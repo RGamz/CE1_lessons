@@ -1,0 +1,327 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
+
+:root {
+  --bg-color: #e0e5ec;
+  --text-main: #333;
+  --text-light: #666;
+  --red-header: #c44d3a;
+  --green-pill: #81c784;
+  --red-pill: #e57373;
+  --blue-pill: #64b5f6;
+  --yellow-bg: #fff59d;
+  --blue-header: #e3f2fd;
+  --blue-border: #90caf9;
+  --red-circle: #e53935;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  /* Prevent pull-to-refresh bounce on iPad */
+  overscroll-behavior-y: none;
+  /* Prevent text selection on tap (makes app feel native) */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Book Layout */
+.book-container {
+  display: flex;
+  max-width: 1400px;
+  width: 100%;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15), inset 0 0 40px rgba(0,0,0,0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Book Spine Shadow */
+.book-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 40px;
+  transform: translateX(-50%);
+  background: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%);
+  pointer-events: none;
+}
+
+.page {
+  flex: 1;
+  padding: 40px;
+  position: relative;
+}
+
+/* Mobile/Portrait iPad responsive - Swipe to turn page */
+@media (max-width: 1024px) {
+  body {
+    padding: 0;
+  }
+  .book-container {
+    flex-direction: row;
+    max-width: 100vw;
+    height: 100vh;
+    height: 100dvh; /* For mobile Safari */
+    border-radius: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  .book-container::after {
+    display: none;
+  }
+  .page {
+    min-width: 100vw;
+    scroll-snap-align: start;
+    height: 100%;
+    overflow-y: auto; /* Scroll up/down within the page */
+    padding: 30px 20px; /* Adjust padding for touch */
+    padding-bottom: 60px; /* Room for swipe indicators if any */
+  }
+  /* Remove Left border on right page in mobile */
+  .page:nth-child(2) {
+    padding-left: 20px !important;
+    border-left: none !important;
+  }
+}
+
+/* Interactive Text Component */
+.interactive-text {
+  display: inline-flex;
+  flex-direction: column;
+  position: relative;
+  margin-bottom: 4px;
+}
+
+.interactive-french {
+  cursor: pointer;
+  display: inline;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: background 0.2s;
+  line-height: 1.6;
+}
+
+.interactive-french:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+.interactive-icon {
+  opacity: 0.5; /* Always visible for touch */
+  transition: opacity 0.2s, transform 0.1s;
+  color: #1976d2;
+  vertical-align: middle;
+  margin-bottom: 2px;
+}
+
+.interactive-french:active .interactive-icon,
+.interactive-french:hover .interactive-icon {
+  opacity: 1;
+  transform: scale(1.1); /* Slight pop on tap */
+}
+
+.interactive-translation {
+  font-size: 0.85em;
+  color: var(--text-light);
+  filter: blur(4px);
+  transition: filter 0.3s, opacity 0.3s;
+  cursor: pointer;
+  user-select: none;
+  margin-top: 2px;
+  padding: 6px 8px; /* Larger tap target */
+  margin-left: -8px;
+  border-radius: 6px;
+  display: block;
+}
+
+.interactive-translation:hover {
+  filter: blur(2px);
+}
+
+.interactive-translation.revealed {
+  filter: blur(0);
+}
+
+/* Left Page Specifics */
+.header-banner {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.header-number {
+  background: var(--red-header);
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 900;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-title {
+  background: #f0f4f8;
+  color: #333;
+  font-size: 1.8rem;
+  font-weight: 800;
+  padding: 10px 20px;
+  flex: 1;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.section-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--green-pill);
+  color: white;
+  padding: 5px 20px;
+  border-radius: 999px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+
+.section-title.orange {
+  background: #e67e22;
+}
+
+.theory-block {
+  background: #f9fbfd;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 30px;
+  border: 1px solid #e0e0e0;
+}
+
+.theory-subtitle {
+  color: #2e7d32;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.theory-subtitle::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  background: #2e7d32;
+  display: inline-block;
+}
+
+.examples-label {
+  color: var(--red-header);
+  font-weight: 700;
+}
+
+/* Right Page Specifics */
+.exercise-header {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--red-header);
+  color: white;
+  padding: 5px 20px;
+  border-radius: 999px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+
+.blue-box {
+  background: var(--blue-header);
+  border: 2px solid var(--blue-border);
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.blue-box-title {
+  color: #1976d2;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.blue-box-title::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: #1976d2;
+  display: inline-block;
+}
+
+.exercise-item {
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px dashed #e0e0e0;
+}
+
+.ex-number {
+  background: var(--red-circle);
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  margin-right: 8px;
+}
+
+.ex-stars {
+  color: #fbc02d;
+  font-weight: 800;
+  background: #fff9c4;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.8em;
+  margin-right: 8px;
+}
+
+.ex-instruction {
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: inline;
+}
+
+.ex-list {
+  list-style-type: none;
+  padding-left: 10px;
+}
+
+.ex-list li {
+  margin-bottom: 10px;
+  display: flex;
+  gap: 8px;
+}
+
+.ex-letter {
+  color: var(--red-circle);
+  font-weight: 800;
+}
