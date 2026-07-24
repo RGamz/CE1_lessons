@@ -3,7 +3,15 @@ export default function Catalog({ onSelectLesson }) {
     { id: 2, title: "Les formes de phrases", ready: true },
     { id: 3, title: "Les constituants de la phrase", ready: true },
     { id: 4, title: "Le verbe et son sujet", ready: true },
-    { id: 5, title: "Le nom propre et le nom commun", ready: false },
+    { id: 5, title: "Le nom propre et le nom commun", ready: true },
+    { id: 6, title: "Le groupe nominal", ready: true },
+    { id: 7, title: "Leçon 7", ready: true },
+    { id: 8, title: "Leçon 8", ready: true },
+    { id: 9, title: "Leçon 9", ready: true },
+    { id: 10, title: "Leçon 10", ready: true },
+    { id: 11, title: "Leçon 11", ready: true },
+    { id: 12, title: "Leçon 12", ready: true },
+    { id: 13, title: "Leçon 13", ready: true },
   ];
 
   return (

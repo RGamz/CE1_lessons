@@ -18,7 +18,7 @@ export default function InteractiveText({ fr, displayFr, ru, type = "sentence" }
     return (
       <span className="interactive-text">
         <span className="interactive-french" onClick={speak}>
-          {content} <Volume2 size={14} className="interactive-icon" />
+          {content} <Volume2 size="1em" className="interactive-icon" style={{ marginLeft: '4px', display: 'inline-block', verticalAlign: 'middle' }} />
         </span>
         {ru && (
           <span 
@@ -36,8 +36,8 @@ export default function InteractiveText({ fr, displayFr, ru, type = "sentence" }
   // Default block/sentence behavior
   return (
     <div className="interactive-text" style={{ display: 'block', marginBottom: '8px' }}>
-      <span className="interactive-french" onClick={speak} style={{ fontSize: '1.1em' }}>
-        {content} <Volume2 size={18} className="interactive-icon" style={{ marginLeft: '8px' }} />
+      <span className="interactive-french" onClick={speak} style={{ fontSize: '1.1em', display: 'inline-block' }}>
+        {content} <Volume2 size="0.9em" className="interactive-icon" style={{ marginLeft: '8px', verticalAlign: 'middle' }} />
       </span>
       {ru && (
         <div 

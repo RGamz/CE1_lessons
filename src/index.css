@@ -162,7 +162,7 @@ body {
 /* Left Page Specifics */
 .header-banner {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   margin-bottom: 30px;
 }
 
@@ -172,10 +172,11 @@ body {
   font-size: 2.5rem;
   font-weight: 900;
   width: 60px;
-  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
 }
 
 .header-title {
